@@ -4,8 +4,6 @@
 #include <iostream>
 #include <vector>
 #include <cstring>
-#include <algorithm>
-#include <limits>
 #include "classes/Endereco.h"
 #include "classes/Local.h"
 #include "classes/Veiculo.h"
@@ -134,10 +132,10 @@ public:
 
     // ================== CRUD PARA PEDIDOS ==================
     int criarPedido(const Local& origem, const Local& destino, float peso) {
-        if (verificaPedido(Pedido(proximoIdPedido, origem, destino, peso))) {
+        if (verificaPedido(Pedido(proximoIdPedido, origem, destino, peso, false))) {
             return -1;
         }
-        Pedido novo(proximoIdPedido, origem, destino, peso);
+        Pedido novo(proximoIdPedido, origem, destino, peso, false);
         pedidos[proximoIdPedido] = novo;
         return proximoIdPedido++;
     }
@@ -147,12 +145,12 @@ public:
         return &pedidos[id];
     }
 
-    bool atualizarPedido(int id, const Local& novaOrigem, const Local& novoDestino, float novoPeso) {
+    bool atualizarPedido(int id, const Local& novaOrigem, const Local& novoDestino, float novoPeso, bool novoStatus) {
         if (id < 0 || id >= proximoIdPedido) return false;
-        if (!verificaPedido(Pedido(id, novaOrigem, novoDestino, novoPeso))) {
+        if (!verificaPedido(Pedido(id, novaOrigem, novoDestino, novoPeso, novoStatus))) {
             return false;
         }
-        Pedido atualizado(id, novaOrigem, novoDestino, novoPeso);
+        Pedido atualizado(id, novaOrigem, novoDestino, novoPeso, novoStatus);
         pedidos[id] = atualizado;
         return true;
     }
