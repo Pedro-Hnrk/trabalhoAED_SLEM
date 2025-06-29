@@ -12,7 +12,6 @@
 class LocalService {
     private:
         Repositorio* repositorio;
-        int nextId = 0; // Adiciona variável para IDs únicos
     public:
         LocalService() = default;
         LocalService(Repositorio* repo) : repositorio(repo) {}
@@ -20,18 +19,15 @@ class LocalService {
         // ================== CRUD PARA LOCAIS ==================
         int criarLocal(const Endereco& endereco, double x, double y) {
             Local novo(endereco, x, y);
-            novo.setId(nextId++); // Lógica para gerar IDs únicos
             novo.setEndereco(endereco);
             if(!novo.setCoordenadaX(x))
                 return -1; // Retorna -1 se coordenada X for inválida
             if(!novo.setCoordenadaY(y))
                 return -1; // Retorna -1 se coordenada Y for inválida
-            repositorio->addLocal(novo);
-            return novo.getId();
+            return repositorio->addLocal(novo);;
         }
 
         Local* lerLocal(int id) {
-            if (id < 0 || id >= nextId) return nullptr;
             return repositorio->getLocal(id);
         }
 
@@ -51,7 +47,6 @@ class LocalService {
         }
 
         bool deletarLocal(int id) {
-            if (id < 0 || id >= nextId) return false; // ID inválido
             try {
                 repositorio->removeLocal(id);
                 return true;

@@ -2,9 +2,9 @@
 #define REPOSITORIO_H
 
 #pragma once
-#include "Local.h"
-#include "Veiculo.h"
-#include "Pedido.h"
+#include "classes/Local.h"
+#include "classes/Veiculo.h"
+#include "classes/Pedido.h"
 #include <vector>
 #include <string>
 #include <fstream>
@@ -13,10 +13,22 @@ class Repositorio {
     std::vector<Local> locais;
     std::vector<Veiculo> veiculos;
     std::vector<Pedido> pedidos;
+private:
+    int nextLocalId = 0; // Para IDs únicos de locais
+    int nextVeiculoId = 0; // Para IDs únicos de veículos
+    int nextPedidoId = 0; // Para IDs únicos de pedidos
 
 public:
     // Locais
-    void addLocal(const Local& l) { locais.push_back(l); }
+    int gerarProximoIdLocal() {
+        return nextLocalId++;
+    }
+
+    int addLocal(Local l) { 
+        l.setId(gerarProximoIdLocal()); 
+        locais.push_back(l); 
+        return l.getId();
+    }
     
     Local* getLocal(int id) {
         for (auto& local : locais) {
@@ -168,6 +180,11 @@ public:
         locais.resize(localCount);
         for (auto& local : locais) {
             inFile.read(reinterpret_cast<char*>(&local), sizeof(Local));
+        }
+        if (!locais.empty()) {
+        nextLocalId = locais.back().getId() + 1;
+        } else {
+        nextLocalId = 0;
         }
 
         // Carrega veículos
