@@ -3,7 +3,6 @@
 
 #include <iostream>
 #include <vector>
-#include <cstring>
 #include "classes/Endereco.h"
 #include "classes/Local.h"
 #include "funcs/verificadores/verificadorLocal.h"
@@ -24,7 +23,7 @@ class LocalService {
                 return -1; // Retorna -1 se coordenada X for inválida
             if(!novo.setCoordenadaY(y))
                 return -1; // Retorna -1 se coordenada Y for inválida
-            return repositorio->addLocal(novo);;
+            return repositorio->addLocal(novo);
         }
 
         Local* lerLocal(int id) {
@@ -104,7 +103,7 @@ class LocalService {
                       << ", Endereço: " << local.getEndereco().getRua() 
                       << ", Coordenadas: (" << local.getCoordenadaX() 
                       << ", " << local.getCoordenadaY() << ")" << std::endl;
-    }
+        }
     }
 
     void editarLocal(Repositorio* repo) {

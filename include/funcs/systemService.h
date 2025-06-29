@@ -11,11 +11,11 @@
 #include <fstream>
 
 void salvarDB(Repositorio& repo) {
-    repo.salvarBinario("C:/Users/Pedro/projetos/trabalho_AED/include/database/database.bin");
+    repo.salvarBinario("include/database/database.bin");
 }
 
 void carregarDB(Repositorio& repo) {
-    repo.carregarBinario("C:/Users/Pedro/projetos/trabalho_AED/include/database/database.bin");
+    repo.carregarBinario("include/database/database.bin");
 }
 
 #endif // SYSTEMSERVICE_H

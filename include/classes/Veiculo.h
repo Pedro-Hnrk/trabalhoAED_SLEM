@@ -9,6 +9,7 @@
 
 class Veiculo {
     private:
+        int id; // ID único do veículo
         char placa[8];
         char modelo[50];
         class Local local;
@@ -26,47 +27,61 @@ class Veiculo {
         const char* getModelo() const { return modelo; }
         const Local& getLocal() const { return local; }
         bool getStatus() const { return status; }
+        int getId() const { return id; }
+
+        bool setId(int novoId) {
+            if (novoId < 0) {
+                std::cerr << "ID inválido." << std::endl;
+                return false;
+            }
+            id = novoId;
+            return true;
+        }
         
-        void setPlaca(const char* placa) {
+        bool setPlaca(const char* placa) {
             if (placa == nullptr) {
-                return;
+                return false;
             }
             if (strlen(placa) != 7) {
-                return;
+                return false;
             }
         
             // Verifica se os primeiros 3 caracteres são letras
             for (int i = 0; i < 3; ++i) {
                 if (!isalpha(placa[i])) {
-                    return;
+                    return false;
                 }
             }
         
             // Verifica se os últimos 4 caracteres são dígitos
             for (int i = 3; i < 7; ++i) {
                 if (!isdigit(placa[i])) {
-                    return;
+                    return false;
                 }
             }
             
             strncpy(this->placa, placa, sizeof(this->placa) - 1);
             this->placa[sizeof(this->placa) - 1] = '\0';
+            return true;
         }
 
-        void setModelo(const char* modelo) {
+        bool setModelo(const char* modelo) {
             if (modelo == nullptr) {
-                return;
+                return false;
             }
             strncpy(this->modelo, modelo, sizeof(this->modelo) - 1);
             this->modelo[sizeof(this->modelo) - 1] = '\0';
+            return true;
         }
 
-        void setLocal(const Local& novoLocal) {
+        bool setLocal(const Local& novoLocal) {
             local = novoLocal;
+            return true;
         }
 
-        void setStatus(bool novoStatus) {
+        bool setStatus(bool novoStatus) {
             status = novoStatus;
+            return true;
         }
 };  
 

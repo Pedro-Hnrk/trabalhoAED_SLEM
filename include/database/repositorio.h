@@ -65,7 +65,16 @@ public:
     }
 
     // Veículos
-    void addVeiculo(const Veiculo& v) { veiculos.push_back(v); }
+    int gerarProximoIdVeiculo() {
+        return nextVeiculoId++;
+    }
+
+    int addVeiculo(Veiculo v) { 
+        v.setId(gerarProximoIdVeiculo()); 
+        v.setPlaca(v.getPlaca()); // Valida a placa
+        veiculos.push_back(v); 
+        return v.getId();
+        }
     
     Veiculo* getVeiculo(const char* placa) { 
         for (auto& veiculo : veiculos) {
@@ -102,7 +111,15 @@ public:
     }
 
     // Pedidos
-    void addPedido(const Pedido& p) { pedidos.push_back(p); }
+        int gerarProximoIdPedido() {
+        return nextPedidoId++;
+    }
+
+    int addPedido(Pedido p) { 
+        p.setId(gerarProximoIdPedido()); 
+        pedidos.push_back(p);
+        return p.getId();
+    }
     
     Pedido* getPedido(int id) { 
         for (auto& pedido : pedidos) {
@@ -194,6 +211,11 @@ public:
         for (auto& veiculo : veiculos) {
             inFile.read(reinterpret_cast<char*>(&veiculo), sizeof(Veiculo));
         }
+        if (!veiculos.empty()) {
+            nextVeiculoId = veiculos.back().getId() + 1;
+        } else {
+        nextVeiculoId = 0;
+        }
 
         // Carrega pedidos
         size_t pedidoCount;
@@ -201,6 +223,11 @@ public:
         pedidos.resize(pedidoCount);
         for (auto& pedido : pedidos) {
             inFile.read(reinterpret_cast<char*>(&pedido), sizeof(Pedido));
+        }
+        if (!pedidos.empty()) {
+            nextPedidoId = pedidos.back().getId() + 1;
+        } else {
+        nextPedidoId = 0;
         }
 
         inFile.close();

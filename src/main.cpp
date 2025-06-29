@@ -3,13 +3,14 @@
 #include <cmath>
 #include <limits>
 #include <stdbool.h>
-#include <cstring>
 #include "classes/Endereco.h"
 #include "classes/Local.h"
 #include "classes/Veiculo.h"
 #include "classes/Pedido.h"
 #include "database/repositorio.h"
 #include "funcs/localService.h"
+#include "funcs/veiculoService.h"
+#include "funcs/pedidoService.h"
 #include "funcs/systemService.h"
 
 int main() {
@@ -20,6 +21,11 @@ int main() {
     adicionarLocal(&repo);
     listarLocais(&repo);
     editarLocal(&repo);
+    adicionarVeiculo(&repo);
+    listarVeiculos(&repo);
+    editarVeiculo(&repo);
+    removerVeiculo(&repo);
+    listarVeiculos(&repo);
     removerLocal(&repo);
     listarLocais(&repo);
 
