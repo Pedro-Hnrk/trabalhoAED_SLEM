@@ -61,4 +61,105 @@ class LocalService {
         }
 };
 
+    void adicionarLocal(Repositorio* repo) {
+        char rua[50], cidade[50], estado[3];
+        double x, y;
+        Endereco endereco;
+        Local local;
+        std::cout << "Digite o endereço do local (rua, cidade, estado) [ENTER PARA PROSSEGUIR] " << std::endl;
+        std::cin.ignore();
+        
+        std::cout << "Digite a rua: "<< std::endl;
+        std::cin.getline(rua, 50);
+        endereco.setRua(rua);
+        
+        std::cout << "Digite a cidade: "<< std::endl;
+        std::cin.getline(cidade, 50);
+        endereco.setCidade(cidade);
+        
+        std::cout << "Digite o estado (sigla de 2 letras): " << std::endl;
+        std::cin.getline(estado, 3);
+        endereco.setEstado(estado);
+
+        std::cout << "Digite as coordenadas (x, y) [Separadas apenas por espaço]: ";
+        scanf("%lf %lf", &x, &y);
+        local.setCoordenadaX(x);
+        local.setCoordenadaY(y);
+        
+    
+        LocalService localService(repo);
+        int id = localService.criarLocal(endereco, local.getCoordenadaX(), local.getCoordenadaY());
+        if (id != -1) {
+            std::cout << "Local criado com ID: " << id << std::endl;
+        } else {
+            std::cerr << "Erro ao criar local." << std::endl;
+        }
+    }
+
+    void listarLocais(Repositorio* repo) {
+        LocalService localService(repo);
+       std::cout << "Lista de Locais:" << std::endl;
+        for (const auto& local : localService.listarLocais()) {
+            std::cout << "ID: " << local.getId() 
+                      << ", Endereço: " << local.getEndereco().getRua() 
+                      << ", Coordenadas: (" << local.getCoordenadaX() 
+                      << ", " << local.getCoordenadaY() << ")" << std::endl;
+    }
+    }
+
+    void editarLocal(Repositorio* repo) {
+        int id;
+        char rua[50], cidade[50], estado[3];
+        double x, y;
+        Endereco novoEndereco;
+        LocalService localService(repo);
+
+        std::cout << "Digite o ID do local a ser editado: ";
+        std::cin >> id;
+
+        Local* local = localService.lerLocal(id);
+        if (!local) {
+            std::cerr << "Local não encontrado." << std::endl;
+            return;
+        }
+
+        std::cout << "Digite o novo endereço do local (rua, cidade, estado) [ENTER PARA PROSSEGUIR] ";
+        std::cin.ignore();
+        
+        std::cout << "Digite a rua: " << std::endl;
+        std::cin.getline(rua, 50);
+        novoEndereco.setRua(rua);
+        
+        std::cout << "Digite a cidade: "<< std::endl;
+        std::cin.getline(cidade, 50);
+        novoEndereco.setCidade(cidade);
+        
+        std::cout << "Digite o estado (sigla de 2 letras): " << std::endl;
+        std::cin.getline(estado, 3);
+        novoEndereco.setEstado(estado);
+
+        std::cout << "Digite as novas coordenadas (x, y) [Separadas apenas por espaço]: ";
+        std::cin >> x >> y;
+
+        if (localService.atualizarLocal(id, novoEndereco, x, y)) {
+            std::cout << "Local com ID " << id << " atualizado com sucesso." << std::endl;
+        } else {
+            std::cerr << "Erro ao atualizar local com ID " << id << "." << std::endl;
+        }
+    }
+
+    void removerLocal(Repositorio* repo) {
+        int id;
+        LocalService localService(repo);
+
+        std::cout << "Digite o ID do local a ser removido: ";
+        std::cin >> id;
+
+        if (localService.deletarLocal(id)) {
+            std::cout << "Local com ID " << id << " removido com sucesso." << std::endl;
+        } else {
+            std::cerr << "Erro ao remover local com ID " << id << "." << std::endl;
+        }
+    }
+
 #endif // FUNC_localServices_H
