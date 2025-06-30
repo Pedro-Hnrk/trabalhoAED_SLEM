@@ -15,7 +15,7 @@
 #include <locale.h>
 
 int main() {
-    setlocale(LC_ALL, "Portuguese");
+    setlocale(LC_ALL, "pt_BR.UTF-8"); // Define o locale para português brasileiro
     // Inicializa o repositório
     Repositorio repo;
     carregarDB(repo);

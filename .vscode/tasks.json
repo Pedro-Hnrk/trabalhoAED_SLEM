@@ -9,7 +9,7 @@
                 "-Iinclude",
                 "-g",
                 "-o",
-                "TP_SLEM",
+                "SLEM",
                 "src/main.cpp"
             ],
             "group": {

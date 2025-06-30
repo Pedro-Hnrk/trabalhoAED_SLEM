@@ -2,10 +2,10 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Executar TP_SLEM.cpp",
+            "name": "Executar SLEM.cpp",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/TP_SLEM.exe",
+            "program": "${workspaceFolder}/SLEM.exe",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
