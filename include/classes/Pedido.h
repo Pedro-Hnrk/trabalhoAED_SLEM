@@ -16,38 +16,43 @@ class Pedido {
         bool status; // false = pendente, true = concluído
     public:
         Pedido() = default;
-        Pedido(int id, const Local& origem, const Local& destino, float peso, bool status)
-            : id(id), origem(origem), destino(destino), peso(peso), status(status) {}
+        Pedido(const Local& origem, const Local& destino, float peso, bool status)
+            :  origem(origem), destino(destino), peso(peso), status(status) {}
         int getId() const { return id; }
         const Local& getOrigem() const { return origem; }
         const Local& getDestino() const { return destino; }
         float getPeso() const { return peso; }
         bool getStatus() const { return status; }
 
-        void setId(int novoId) {
+        bool setId(int novoId) {
             id = novoId;
+            return true;
         }
 
-        void setOrigem(const Local& novaOrigem) {
+        bool setOrigem(const Local& novaOrigem) {
             origem = novaOrigem;
+            return true;
         }
 
-        void setDestino(const Local& novoDestino) {
+        bool setDestino(const Local& novoDestino) {
             destino = novoDestino;
+            return true;
         }
 
-        void setPeso(float novoPeso) {
+        bool setPeso(float novoPeso) {
             if (novoPeso <= 0) {
                 std::cerr << "Peso deve ser maior que 0 Kg." << std::endl;
-                return;
+                return false;
             }
             peso = novoPeso;
+            return true;
         }
 
-        void setStatus(bool novoStatus) {
+        bool setStatus(bool novoStatus) {
             status = novoStatus;
+            return true;
         }
 
-};
+}; 
 
 #endif // PEDIDO_H
