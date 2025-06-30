@@ -5,7 +5,6 @@
 #include <vector>
 #include "classes/Endereco.h"
 #include "classes/Local.h"
-#include "funcs/verificadores/verificadorLocal.h"
 #include "database/repositorio.h"
 
 class LocalService {
