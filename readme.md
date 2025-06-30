@@ -79,7 +79,7 @@ trabalho_AED/
 No terminal, na raiz do projeto:
 
 ```sh
-g++ -Iinclude -g -o main src/main.cpp
+g++ -Iinclude -g -o SLEM src/main.cpp
 ```
 
 ### Execução
@@ -87,7 +87,7 @@ g++ -Iinclude -g -o main src/main.cpp
 No Windows:
 
 ```sh
-main.exe
+SLEM.exe
 ```
 
 No Linux/Mac:
