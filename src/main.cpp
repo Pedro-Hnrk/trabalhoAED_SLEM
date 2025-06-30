@@ -12,8 +12,10 @@
 #include "funcs/veiculoService.h"
 #include "funcs/pedidoService.h"
 #include "funcs/systemService.h"
+#include <locale.h>
 
 int main() {
+    setlocale(LC_ALL, "Portuguese");
     // Inicializa o repositório
     Repositorio repo;
     carregarDB(repo);
