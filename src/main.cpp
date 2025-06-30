@@ -35,6 +35,7 @@ int main() {
     std::cout << "0. Sair" << std::endl;
     std::cin >> op;
     std::cin.ignore(); // Limpa o buffer do cin para evitar problemas com getline
+    system("cls"); // Limpa a tela do console
     if (op < 0 || op > 4) 
         std::cout << "Opção inválida. Tente novamente." << std::endl;
     switch (op) {
@@ -47,6 +48,7 @@ int main() {
                 std::cout << "4. Remover Local" << std::endl;
                 std::cout << "0. Voltar" << std::endl;
                 std::cin >> localOp;
+                system("cls"); // Limpa a tela do console
                 switch (localOp) {
                     case 1:
                         adicionarLocal(&repo);
@@ -66,9 +68,11 @@ int main() {
                         break;
                     case 0:
                         std::cout << "Voltando ao menu principal." << std::endl;
+                        system("cls"); // Limpa a tela do console
                         break;
                     default:
                         std::cout << "Opção inválida." << std::endl;
+                        system("cls"); // Limpa a tela do console
                 }
         } while (localOp != 0);
             break;
@@ -81,6 +85,7 @@ int main() {
                 std::cout << "4. Remover Veículo" << std::endl;
                 std::cout << "0. Voltar" << std::endl;
                 std::cin >> veiculoOp;
+                system("cls"); // Limpa a tela do console
                 switch (veiculoOp) {
                     case 1:
                         adicionarVeiculo(&repo);
@@ -100,9 +105,11 @@ int main() {
                         break;
                     case 0:
                         std::cout << "Voltando ao menu principal." << std::endl;
+                        system("cls"); // Limpa a tela do console
                         break;
                     default:
                         std::cout << "Opção inválida." << std::endl;
+                        system("cls"); // Limpa a tela do console
                 }
             } while (veiculoOp != 0);
             break;
@@ -116,6 +123,7 @@ int main() {
                 std::cout << "0. Voltar" << std::endl;
                 
                 std::cin >> pedidoOp;
+                system("cls"); // Limpa a tela do console
                 switch (pedidoOp) {
                     case 1:
                         adicionarPedido(&repo);
@@ -135,9 +143,11 @@ int main() {
                         break;
                     case 0:
                         std::cout << "Voltando ao menu principal." << std::endl;
+                        system("cls"); // Limpa a tela do console
                         break;
                     default:
                         std::cout << "Opção inválida." << std::endl;
+                        system("cls"); // Limpa a tela do console
                 }
             } while (pedidoOp != 0);
             break;
@@ -149,6 +159,7 @@ int main() {
                 std::cout << "3. Realizar Nova Entrega" << std::endl;
                 std::cout << "0. Voltar" << std::endl;
                 std::cin >> entregaOp;
+                system("cls"); // Limpa a tela do console
                 switch (entregaOp) {
                     case 1:
                         listarPedidosPendentes(&repo);
@@ -174,9 +185,11 @@ int main() {
                     }
                     case 0:
                         std::cout << "Voltando ao menu principal." << std::endl;
+                        system("cls"); // Limpa a tela do console
                         break;
                     default:
                         std::cout << "Opção inválida." << std::endl;
+                        system("cls"); // Limpa a tela do console
                 }
             } while (entregaOp != 0);
             break;
@@ -185,6 +198,7 @@ int main() {
             break;
         default:
             std::cout << "Opção inválida. Tente novamente." << std::endl;
+            system("cls"); // Limpa a tela do console
     }
 
     } while (op != 0);
