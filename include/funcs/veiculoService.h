@@ -96,7 +96,7 @@ void listarVeiculos(Repositorio* repo) {
                   << ", Local: " << veiculo.getLocal().getEndereco().getRua() 
                                  << veiculo.getLocal().getEndereco().getCidade()
                                  << veiculo.getLocal().getEndereco().getEstado()
-                  << ", Coordenadas: (" << veiculo.getLocal().getCoordenadaX()
+                  << ", Coordenadas: (" << veiculo.getLocal().getCoordenadaX() << veiculo.getLocal().getCoordenadaY()
                       << ", Status: " << (veiculo.getStatus() ? "Disponivel" : "Indisponivel") 
                       << std::endl;
         }

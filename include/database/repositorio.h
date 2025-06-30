@@ -91,6 +91,7 @@ public:
                 veiculo = elemento;
                 return;
             }
+        
         }
         throw std::runtime_error("Veículo não encontrado");
 

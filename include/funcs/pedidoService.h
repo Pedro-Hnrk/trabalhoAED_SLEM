@@ -67,6 +67,7 @@ void adicionarPedido(Repositorio* repo) {
     std::cout << "Digite o ID do local de origem: ";
     int origemId;
     std::cin >> origemId;
+    std::cin.ignore(); // Limpa o buffer do cin para evitar problemas com getline
     Local* localOrigem = repo->getLocal(origemId);
     if (localOrigem) {
         origem = *localOrigem;
@@ -79,9 +80,10 @@ void adicionarPedido(Repositorio* repo) {
     int destinoId;
     std::cin >> destinoId;
     Local* localDestino = repo->getLocal(destinoId);
-    if (localDestino = localOrigem)
+    if (localDestino == localOrigem) {
         std::cerr << "O local de destino não pode ser o mesmo que o de origem." << std::endl;
         return;
+    }
     if (localDestino) {
         destino = *localDestino;
     } else {
