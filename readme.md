@@ -23,18 +23,12 @@ trabalho_AED/
 │       ├── pedidoService.h
 │       ├── systemService.h
 │       ├── veiculoService.h
-│       └── verificadores/
-│           ├── verificadorLocal.h
-│           ├── verificadorPedido.h
-│           └── verificadorVeiculo.h
+│       └── verificadores/        
 │
 ├── src/
 │   └── main.cpp
-│
-└── .vscode/
-    ├── c_cpp_properties.json
-    ├── launch.json
-    └── tasks.json
+
+
 ```
 
 ---
@@ -54,7 +48,6 @@ trabalho_AED/
 - **include/funcs/**:
   - `localService.h`, `veiculoService.h`, `pedidoService.h`: Serviços para operações CRUD de cada entidade, interagindo com o repositório.
   - `systemService.h`: Funções utilitárias do sistema, como salvar/carregar banco de dados, calcular distâncias e gerenciar entregas.
-  - `verificadores/`: Funções de validação para dados de endereço, local, veículo e pedido.
 
 - **src/main.cpp**: Ponto de entrada do programa, com menu interativo para o usuário.
 
@@ -77,7 +70,7 @@ trabalho_AED/
 ### Pré-requisitos
 
 - **Compilador C++** (g++ recomendado, disponível via MSYS2 no Windows)
-- **Visual Studio Code** com as extensões:
+- **Visual Studio Code** (opcional) com as extensões:
   - C/C++
   - Code Runner (opcional)
 
