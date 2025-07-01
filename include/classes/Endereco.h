@@ -88,6 +88,7 @@ class Endereco {
             if (estado == nullptr) {
                 std::cerr << "Estado não pode ser nulo." << std::endl;
                 return;
+            }
             if(estado[0] == '\0' || estado[1] == '\0') {
                 std::cerr << "Estado deve ter 2 letras." << std::endl;
                 return;
