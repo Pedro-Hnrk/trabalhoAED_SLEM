@@ -1,18 +1,18 @@
-#include <iostream>
-#include <vector>
-#include <cmath>
-#include <limits>
-#include <stdbool.h>
-#include "classes/Endereco.h"
-#include "classes/Local.h"
-#include "classes/Veiculo.h"
-#include "classes/Pedido.h"
-#include "database/repositorio.h"
-#include "funcs/localService.h"
-#include "funcs/veiculoService.h"
-#include "funcs/pedidoService.h"
-#include "funcs/systemService.h"
-#include <locale.h>
+#include <iostream> // Biblioteca para entrada e saída de dados
+#include <vector> // Biblioteca para uso de vetores
+#include <cmath> // Biblioteca para funções matemáticas
+#include <limits> // Biblioteca para limites de tipos numéricos
+#include <stdbool.h> // Biblioteca para uso de booleanos
+#include "classes/Endereco.h" // Inclui a classe Endereco
+#include "classes/Local.h" // Inclui a classe Local
+#include "classes/Veiculo.h" // Inclui a classe Veiculo
+#include "classes/Pedido.h" // Inclui a classe Pedido
+#include "database/repositorio.h" // Inclui a classe Repositorio
+#include "funcs/localService.h" // Inclui o serviço de manipulação de locais
+#include "funcs/veiculoService.h" // Inclui o serviço de manipulação de veículos
+#include "funcs/pedidoService.h" // Inclui o serviço de manipulação de pedidos
+#include "funcs/systemService.h" // Inclui o serviço de manipulação do sistema
+#include <locale.h> // Biblioteca para manipulação de locale
 
 int main() {
     setlocale(LC_ALL, "pt_BR.UTF-8"); // Define o locale para português brasileiro
@@ -47,6 +47,8 @@ int main() {
                 std::cout << "3. Editar Local" << std::endl;
                 std::cout << "4. Remover Local" << std::endl;
                 std::cout << "0. Voltar" << std::endl;
+                std::cout << "Digite a opção desejada: ";
+
                 std::cin >> localOp;
                 system("cls"); // Limpa a tela do console
                 switch (localOp) {
@@ -70,9 +72,11 @@ int main() {
                         std::cout << "Voltando ao menu principal." << std::endl;
                         system("cls"); // Limpa a tela do console
                         break;
+
                     default:
                         std::cout << "Opção inválida." << std::endl;
                         system("cls"); // Limpa a tela do console
+                        break;
                 }
         } while (localOp != 0);
             break;

@@ -104,6 +104,10 @@ class Pedido {
                 std::cerr << "Peso deve ser maior que 0 Kg." << std::endl;
                 return false;
             }
+            if (std::isnan(novoPeso)) {
+                std::cerr << "Peso inválido." << std::endl;
+                return false;
+            }
             peso = novoPeso;
             return true;
         }

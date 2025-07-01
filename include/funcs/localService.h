@@ -64,7 +64,7 @@ class LocalService {
         double x, y;
         Endereco endereco;
         Local local;
-        std::cout << "Digite o endereço do local (rua, cidade, estado) [ENTER PARA PROSSEGUIR] " << std::endl;
+        std::cout << "Digite o endereço do local (rua, cidade, estado)" << std::endl;
         std::cin.ignore();
         
         std::cout << "Digite a rua: "<< std::endl;
@@ -77,8 +77,10 @@ class LocalService {
         
         std::cout << "Digite o estado (sigla de 2 letras): " << std::endl;
         std::cin.getline(estado, 3);
+        std::cin.ignore(); // Limpa o buffer do cin para evitar problemas com getline
         endereco.setEstado(estado);
 
+        
         std::cout << "Digite as coordenadas (x, y) [Separadas apenas por espaço]: ";
         scanf("%lf %lf", &x, &y);
         local.setCoordenadaX(x);
@@ -121,7 +123,7 @@ class LocalService {
             return;
         }
 
-        std::cout << "Digite o novo endereço do local (rua, cidade, estado) [ENTER PARA PROSSEGUIR] ";
+        std::cout << "Digite o novo endereço do local (rua, cidade, estado)";
         std::cin.ignore();
         
         std::cout << "Digite a rua: " << std::endl;
