@@ -30,6 +30,7 @@ trabalho_AED/
 
 
 ```
+![image](https://github.com/user-attachments/assets/b26a1949-ad8a-45d3-8e52-bbf726f13065)
 
 ---
 
