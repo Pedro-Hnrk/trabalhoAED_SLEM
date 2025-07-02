@@ -54,6 +54,11 @@ int main() {
                 switch (localOp) {
                     case 1:
                         adicionarLocal(&repo);
+                        if (std::cin.fail()) {
+                            std::cin.clear(); // limpa o estado de erro
+                            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // descarta o restante da linha
+                            localOp = -1; // força opção inválida
+                        }
                         localOp = -1;
                         break;
                     case 2:
@@ -62,6 +67,11 @@ int main() {
                         break;
                     case 3:
                         editarLocal(&repo);
+                        if (std::cin.fail()) {
+                            std::cin.clear(); // limpa o estado de erro
+                            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // descarta o restante da linha
+                            localOp = -1; // força opção inválida
+                        }
                         localOp = -1;
                         break;
                     case 4:
@@ -93,6 +103,11 @@ int main() {
                 switch (veiculoOp) {
                     case 1:
                         adicionarVeiculo(&repo);
+                        if (std::cin.fail()) {
+                            std::cin.clear(); // limpa o estado de erro
+                            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // descarta o restante da linha
+                            veiculoOp = -1; // força opção inválida
+                        }
                         veiculoOp = -1;
                         break;
                     case 2:
@@ -101,10 +116,20 @@ int main() {
                         break;
                     case 3:
                         editarVeiculo(&repo);
+                        if (std::cin.fail()) {
+                            std::cin.clear(); // limpa o estado de erro
+                            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // descarta o restante da linha
+                            veiculoOp = -1; // força opção inválida
+                        }
                         veiculoOp = -1;
                         break;
                     case 4:
                         removerVeiculo(&repo);
+                        if (std::cin.fail()) {
+                            std::cin.clear(); // limpa o estado de erro
+                            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // descarta o restante da linha
+                            veiculoOp = -1; // força opção inválida
+                        }
                         veiculoOp = -1;
                         break;
                     case 0:
@@ -131,6 +156,11 @@ int main() {
                 switch (pedidoOp) {
                     case 1:
                         adicionarPedido(&repo);
+                        if (std::cin.fail()) {
+                        std::cin.clear(); // limpa o estado de erro
+                        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // descarta o restante da linha
+                        pedidoOp = -1; // força opção inválida
+                        }
                         pedidoOp = -1;
                         break;
                     case 2:
@@ -139,10 +169,20 @@ int main() {
                         break;
                     case 3:
                         editarPedido(&repo);
+                        if (std::cin.fail()) {
+                            std::cin.clear(); // limpa o estado de erro
+                            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // descarta o restante da linha
+                            pedidoOp = -1; // força opção inválida
+                        }
                         pedidoOp = -1;
                         break;
                     case 4:
                         removerPedido(&repo);
+                        if (std::cin.fail()) {
+                            std::cin.clear(); // limpa o estado de erro
+                            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // descarta o restante da linha
+                            pedidoOp = -1; // força opção inválida
+                        }
                         pedidoOp = -1;
                         break;
                     case 0:

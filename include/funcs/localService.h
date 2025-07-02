@@ -59,41 +59,40 @@ class LocalService {
         }
 };
 
-    void adicionarLocal(Repositorio* repo) {
-        char rua[50], cidade[50], estado[3];
-        double x, y;
-        Endereco endereco;
-        Local local;
+ void adicionarLocal(Repositorio* repo) {
+    char rua[50], cidade[50], estado[3];
+    double x, y;
+    double verify = 0; // Variável para verificar se o endereço é válido
+    Endereco endereco;
+    Local local;
         std::cout << "Digite o endereço do local (rua, cidade, estado)" << std::endl;
         std::cin.ignore();
-        
+            
         std::cout << "Digite a rua: "<< std::endl;
         std::cin.getline(rua, 50);
         endereco.setRua(rua);
-        
+            
         std::cout << "Digite a cidade: "<< std::endl;
         std::cin.getline(cidade, 50);
         endereco.setCidade(cidade);
-        
+            
         std::cout << "Digite o estado (sigla de 2 letras): " << std::endl;
         std::cin.getline(estado, 3);
-        std::cin.ignore(); // Limpa o buffer do cin para evitar problemas com getline
         endereco.setEstado(estado);
-
-        
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Limpa o restante da linha
         std::cout << "Digite as coordenadas (x, y) [Separadas apenas por espaço]: ";
-        scanf("%lf %lf", &x, &y);
+        std::cin >> x >> y;
         local.setCoordenadaX(x);
         local.setCoordenadaY(y);
+            
         
-    
         LocalService localService(repo);
         int id = localService.criarLocal(endereco, local.getCoordenadaX(), local.getCoordenadaY());
         if (id != -1) {
             std::cout << "Local criado com ID: " << id << std::endl;
         } else {
             std::cerr << "Erro ao criar local." << std::endl;
-        }
+            }
     }
 
     void listarLocais(Repositorio* repo) {
