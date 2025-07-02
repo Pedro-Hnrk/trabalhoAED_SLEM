@@ -18,13 +18,18 @@ int main() {
     setlocale(LC_ALL, "pt_BR.UTF-8"); // Define o locale para português brasileiro
     // Inicializa o repositório
     Repositorio repo;
-    carregarDB(repo);
+    carregarDB(repo); // Carrega os dados do repositório a partir do arquivo binário
 
+    // Variáveis para armazenar as opções do menu
+    // As opções são definidas como -1 inicialmente para indicar que nenhuma opção foi selecionada
     int op = -1;
     int entregaOp = -1;
     int veiculoOp = -1;
     int pedidoOp = -1;
     int localOp =-1;
+    
+    // Loop principal do menu
+    // O loop continua até que o usuário escolha a opção de sair (0)
     do {
     std::cout << "Bem-vindo ao SLEM!" << std::endl;
     std::cout << "Selecione uma opção:" << std::endl;
@@ -38,8 +43,11 @@ int main() {
     system("cls"); // Limpa a tela do console
     if (op < 0 || op > 4) 
         std::cout << "Opção inválida. Tente novamente." << std::endl;
+    
+    // Menu de opções
     switch (op) {
         case 1:
+        // Menu de opções para gerenciar locais
             do {
                 std::cout << "Opções Locais." << std::endl;
                 std::cout << "1. Adicionar Local" << std::endl;
@@ -91,6 +99,7 @@ int main() {
         } while (localOp != 0);
             break;
         case 2:
+            // Menu de opções para gerenciar veículos
             do {
                 std::cout << "Opções Veículos." << std::endl;
                 std::cout << "1. Adicionar Veículo" << std::endl;
@@ -143,6 +152,7 @@ int main() {
             } while (veiculoOp != 0);
             break;
         case 3:
+            // Menu de opções para gerenciar pedidos
             do {
                 std::cout << "Opções Pedidos." << std::endl;
                 std::cout << "1. Adicionar Pedido" << std::endl;
@@ -196,6 +206,7 @@ int main() {
             } while (pedidoOp != 0);
             break;
         case 4:
+            // Menu de opções para gerenciar entregas
             do {
                 std::cout << "Opções Gerenciar Entregas." << std::endl;
                 std::cout << "1. Listar Pedidos Pendentes" << std::endl;

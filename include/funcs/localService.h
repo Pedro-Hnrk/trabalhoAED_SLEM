@@ -7,14 +7,29 @@
 #include "classes/Local.h"
 #include "database/repositorio.h"
 
+/**
+ * @class LocalService
+ * @brief Classe responsável por gerenciar as operações CRUD para locais.
+ * 
+ * Esta classe fornece métodos para criar, ler, atualizar e deletar locais,
+ * além de listar todos os locais disponíveis no repositório.
+ */
 class LocalService {
     private:
-        Repositorio* repositorio;
+        Repositorio* repositorio; // Ponteiro para o repositório onde os locais são armazenados
     public:
-        LocalService() = default;
-        LocalService(Repositorio* repo) : repositorio(repo) {}
+        LocalService() = default; // Construtor padrão
+        LocalService(Repositorio* repo) : repositorio(repo) {} // Construtor que recebe um repositório
         
         // ================== CRUD PARA LOCAIS ==================
+        /**
+         * @brief Cria um novo local com o endereço e coordenadas fornecidos.
+         * 
+         * @param endereco Endereço do local a ser criado.
+         * @param x Coordenada X do local.
+         * @param y Coordenada Y do local.
+         * @return int ID do local criado, ou -1 se as coordenadas forem inválidas.
+         */
         int criarLocal(const Endereco& endereco, double x, double y) {
             Local novo(endereco, x, y);
             novo.setEndereco(endereco);
@@ -25,10 +40,25 @@ class LocalService {
             return repositorio->addLocal(novo);
         }
 
+        /**
+         * @brief Lê um local pelo ID.
+         * 
+         * @param id ID do local a ser lido.
+         * @return Local* Ponteiro para o objeto Local, ou nullptr se não encontrado.
+         */
         Local* lerLocal(int id) {
             return repositorio->getLocal(id);
         }
 
+        /**
+         * @brief Atualiza um local existente com o novo endereço e coordenadas.
+         * 
+         * @param id ID do local a ser atualizado.
+         * @param novoEndereco Novo endereço do local.
+         * @param novoX Nova coordenada X do local.
+         * @param novoY Nova coordenada Y do local.
+         * @return true se a atualização for bem-sucedida, false caso contrário.
+         */
         bool atualizarLocal(int id, const Endereco& novoEndereco, double novoX, double novoY) {
             Local* local = repositorio->getLocal(id);
             if (!local) return false; // Local não encontrado
@@ -44,6 +74,12 @@ class LocalService {
             return true;
         }
 
+        /**
+         * @brief Deleta um local pelo ID.
+         * 
+         * @param id ID do local a ser deletado.
+         * @return true se a deleção for bem-sucedida, false caso contrário.
+         */
         bool deletarLocal(int id) {
             try {
                 repositorio->removeLocal(id);
@@ -59,6 +95,12 @@ class LocalService {
         }
 };
 
+/**
+ * @brief Função para adicionar um novo local ao repositório.
+ * @param repo Ponteiro para o repositório onde o local será adicionado.
+ * Esta função solicita ao usuário as informações do local, como endereço e coordenadas,
+ * e utiliza a classe LocalService para criar o local e adicioná-lo ao repositório.
+ */
  void adicionarLocal(Repositorio* repo) {
     char rua[50], cidade[50], estado[3];
     double x, y;
@@ -95,17 +137,28 @@ class LocalService {
             }
     }
 
-    void listarLocais(Repositorio* repo) {
-        LocalService localService(repo);
-       std::cout << "Lista de Locais:" << std::endl;
-        for (const auto& local : localService.listarLocais()) {
-            std::cout << "ID: " << local.getId() 
-                      << ", Endereço: " << local.getEndereco().getRua() 
-                      << ", Coordenadas: (" << local.getCoordenadaX() 
-                      << ", " << local.getCoordenadaY() << ")" << std::endl;
-        }
+/**
+ * @brief Função para listar todos os locais no repositório.
+ * @param repo Ponteiro para o repositório de onde os locais serão listados.
+ * Esta função utiliza a classe LocalService para obter todos os locais e exibi-los no console.
+ */
+void listarLocais(Repositorio* repo) {
+    LocalService localService(repo);
+    std::cout << "Lista de Locais:" << std::endl;
+    for (const auto& local : localService.listarLocais()) {
+        std::cout << "ID: " << local.getId() 
+                  << ", Endereço: " << local.getEndereco().getRua() 
+                  << ", Coordenadas: (" << local.getCoordenadaX() 
+                  << ", " << local.getCoordenadaY() << ")" << std::endl;
     }
+}
 
+/**
+ * @brief Função para editar um local existente no repositório.
+ * @param repo Ponteiro para o repositório onde o local será editado.
+ * Esta função solicita ao usuário o ID do local a ser editado e as novas informações do local,
+ * e utiliza a classe LocalService para atualizar o local no repositório.
+ */
     void editarLocal(Repositorio* repo) {
         int id;
         char rua[50], cidade[50], estado[3];
@@ -147,6 +200,13 @@ class LocalService {
         }
     }
 
+/**
+ * @brief Função para remover um local do repositório.
+ * @param repo Ponteiro para o repositório de onde o local será removido. 
+ * Esta função solicita ao usuário o ID do local a ser removido
+ * e utiliza a classe LocalService para deletar o local do repositório.
+ * @throws std::runtime_error Se o local não for encontrado.
+ */
     void removerLocal(Repositorio* repo) {
         int id;
         LocalService localService(repo);

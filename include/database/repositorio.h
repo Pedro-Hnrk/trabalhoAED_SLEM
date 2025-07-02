@@ -9,6 +9,14 @@
 #include <string>
 #include <fstream>
 
+
+/**
+ * @class Repositorio
+ * @brief Classe responsável por gerenciar os dados do sistema, incluindo locais, veículos e pedidos.
+ * 
+ * Esta classe fornece métodos para adicionar, atualizar, remover e consultar locais, veículos e pedidos.
+ * Os dados são armazenados em vetores e podem ser salvos em um arquivo binário.
+ */
 class Repositorio {
     std::vector<Local> locais;
     std::vector<Veiculo> veiculos;
@@ -20,16 +28,33 @@ private:
 
 public:
     // Locais
+    /**
+     * @brief Gera o próximo ID único para um local.
+     * 
+     * @return int Próximo ID único para um local.
+     */
     int gerarProximoIdLocal() {
         return nextLocalId++;
     }
 
+    /**
+     * @brief Adiciona um novo local ao repositório.
+     * 
+     * @param l Objeto Local a ser adicionado.
+     * @return int ID do local adicionado.
+     */
     int addLocal(Local l) { 
         l.setId(gerarProximoIdLocal()); 
         locais.push_back(l); 
         return l.getId();
     }
     
+    /**
+     * @brief Obtém um local pelo ID.
+     * 
+     * @param id ID do local a ser obtido.
+     * @return Local* Ponteiro para o objeto Local, ou nullptr se não encontrado.
+     */
     Local* getLocal(int id) {
         for (auto& local : locais) {
             if (local.getId() == id) {
@@ -39,6 +64,12 @@ public:
         return nullptr;
     }
 
+    /**
+     * @brief Atualiza um local existente no repositório.
+     * 
+     * @param elemento Objeto Local com os dados atualizados.
+     * @throws std::runtime_error Se o local não for encontrado.
+     */
     void updateLocal(Local elemento) {
         for (auto& local : locais) {
             if (local.getId() == elemento.getId()) {
@@ -49,7 +80,12 @@ public:
         throw std::runtime_error("Local não encontrado");
     }
 
-
+    /**
+     * @brief Remove um local do repositório pelo ID.
+     * 
+     * @param id ID do local a ser removido.
+     * @throws std::runtime_error Se o local não for encontrado.
+     */
     void removeLocal(int id)  {
         for (auto it = locais.begin(); it != locais.end(); ++it) {
             if (it->getId() == id) {
@@ -65,10 +101,22 @@ public:
     }
 
     // Veículos
+    /**
+     * @brief Gera o próximo ID único para um veículo.
+     * 
+     * @return int Próximo ID único para um veículo.
+     */
     int gerarProximoIdVeiculo() {
         return nextVeiculoId++;
     }
 
+    /**
+     * @brief Adiciona um novo veículo ao repositório.
+     * 
+     * @param v Objeto Veiculo a ser adicionado.
+     * @return int ID do veículo adicionado.
+     * @throws std::runtime_error Se a placa do veículo for inválida.
+     */
     int addVeiculo(Veiculo v) { 
         v.setId(gerarProximoIdVeiculo()); 
         v.setPlaca(v.getPlaca()); // Valida a placa
@@ -76,6 +124,12 @@ public:
         return v.getId();
         }
     
+     /**
+      * @brief Obtém um veículo pela placa.
+      * 
+      * @param placa Placa do veículo a ser obtido.
+      * @return Veiculo* Ponteiro para o objeto Veiculo, ou nullptr se não encontrado.
+      */
     Veiculo* getVeiculo(const char* placa) { 
         for (auto& veiculo : veiculos) {
             if (veiculo.getPlaca() == placa) {
@@ -85,6 +139,12 @@ public:
         return nullptr;
      }
 
+    /**     
+     * @brief Atualiza um veículo existente no repositório.
+     * 
+     * @param elemento Objeto Veiculo com os dados atualizados.
+     * @throws std::runtime_error Se o veículo não for encontrado.
+     */
     void updateVeiculo(Veiculo elemento) {
         for (auto& veiculo : veiculos) {
             if (strcmp(veiculo.getPlaca(), elemento.getPlaca()) == 0) {
@@ -97,6 +157,12 @@ public:
 
     }
 
+    /**
+     * @brief Remove um veículo do repositório pela placa.
+     * 
+     * @param placa Placa do veículo a ser removido.
+     * @throws std::runtime_error Se o veículo não for encontrado.
+     */
     void removeVeiculo(const char* placa) {
         for (auto it = veiculos.begin(); it != veiculos.end(); ++it) {
             if (strcmp(it->getPlaca(), placa) == 0) {
@@ -112,16 +178,32 @@ public:
     }
 
     // Pedidos
+    /**
+     * @brief Gera o próximo ID único para um pedido.
+     * @return int Próximo ID único para um pedido.
+     */
         int gerarProximoIdPedido() {
         return nextPedidoId++;
     }
 
+    /**
+     * @brief Adiciona um novo pedido ao repositório.
+     * 
+     * @param p Objeto Pedido a ser adicionado.
+     * @return int ID do pedido adicionado.
+     */
     int addPedido(Pedido p) { 
         p.setId(gerarProximoIdPedido()); 
         pedidos.push_back(p);
         return p.getId();
     }
     
+    /**
+     * @brief Obtém um pedido pelo ID.
+     * 
+     * @param id ID do pedido a ser obtido.
+     * @return Pedido* Ponteiro para o objeto Pedido, ou nullptr se não encontrado.
+     */
     Pedido* getPedido(int id) { 
         for (auto& pedido : pedidos) {
             if (pedido.getId() == id) {
@@ -131,6 +213,12 @@ public:
         return nullptr;
     }
 
+    /**
+     * @brief Atualiza um pedido existente no repositório.
+     * 
+     * @param elemento Objeto Pedido com os dados atualizados.
+     * @throws std::runtime_error Se o pedido não for encontrado.
+     */
     void updatePedido(Pedido elemento) {
         for (auto& pedido : pedidos) {
             if (pedido.getId() == elemento.getId()) {
@@ -141,6 +229,12 @@ public:
         throw std::runtime_error("Pedido não encontrado");
     }
 
+    /**
+     * @brief Remove um pedido do repositório pelo ID.
+     * 
+     * @param id ID do pedido a ser removido.
+     * @throws std::runtime_error Se o pedido não for encontrado.
+     */
     void removePedido(int id) {
         for (auto it = pedidos.begin(); it != pedidos.end(); ++it) {
             if (it->getId() == id) {
